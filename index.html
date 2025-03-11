@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundTribe - Portfolio</title>
+    <title>SoundTribe Doc</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -31,11 +31,12 @@
     </style>
 </head>
 <body class="bg-light dark:bg-dark text-lightText dark:text-darkText transition-colors duration-300">
+
 <!-- Header fijo -->
 <header class="fixed w-full bg-light dark:bg-dark shadow-md z-50 transition-colors duration-300">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <div class="flex items-center">
-            <img src="logo-placeholder.png" alt="SoundTribe Logo" class="h-10 mr-3">
+            <img src="doc/SOUNDTRIBE%20sin%20fondo.png" alt="SoundTribe" class="h-10 mr-3">
             <span class="text-xl font-bold">SoundTribe</span>
         </div>
         <div class="flex items-center">
@@ -76,9 +77,9 @@
             <div class="pdf-container bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                 <p class="text-center py-4 text-lg">Aquí localización del PDF</p>
                 <!-- El PDF se cargará aquí -->
-                <!-- <object data="./docs/proyecto.pdf" type="application/pdf" width="100%" height="100%">
-                    <p>Tu navegador no puede mostrar PDFs. <a href="./docs/proyecto.pdf">Descarga el PDF</a> en su lugar.</p>
-                </object> -->
+                <object data="doc/SOUNDTRIBE.pdf" type="application/pdf" width="100%" height="100%">
+                    <p>Tu navegador no puede mostrar PDFs. <a href="doc/SOUNDTRIBE.pdf">Descarga el PDF</a> en su lugar.</p>
+                </object>
             </div>
         </div>
 
@@ -95,7 +96,7 @@
                 </a>
                 <a href="#" class="bg-red-600 hover:bg-red-700 text-white rounded-lg p-6 shadow-lg transition-colors duration-200">
                     <h3 class="text-xl font-bold mb-2">YouTube</h3>
-                    <p>Mira nuestros videos tutoriales</p>
+                    <p>Mira mis videos</p>
                 </a>
                 <a href="#" class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg p-6 shadow-lg transition-colors duration-200">
                     <h3 class="text-xl font-bold mb-2">Instagram</h3>
@@ -104,35 +105,7 @@
             </div>
         </div>
 
-        <div class="mt-16">
-            <h2 class="text-3xl font-bold mb-6">¿Qué opinas?</h2>
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                <form id="comment-form" class="mb-6">
-                    <div class="mb-4">
-                        <label for="name" class="block mb-2 font-medium">Nombre</label>
-                        <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="comment" class="block mb-2 font-medium">Comentario</label>
-                        <textarea id="comment" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600" required></textarea>
-                    </div>
-                    <button type="submit" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">Enviar comentario</button>
-                </form>
 
-                <div id="comments-container">
-                    <!-- Los comentarios se cargarán aquí -->
-                    <h3 class="text-xl font-bold mb-4">Comentarios</h3>
-                    <div class="space-y-4" id="comments-list">
-                        <!-- Comentario de ejemplo -->
-                        <div class="p-4 border-l-4 border-blue-500 bg-gray-100 dark:bg-gray-700 rounded">
-                            <p class="font-bold">Usuario de ejemplo</p>
-                            <p class="text-gray-700 dark:text-gray-300">Este es un comentario de ejemplo para mostrar cómo se verían los comentarios.</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Publicado el 11 de marzo, 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 </main>
 
@@ -152,69 +125,6 @@
     document.getElementById('theme-toggle').addEventListener('click', function() {
         document.documentElement.classList.toggle('dark');
     });
-
-    // Sistema de comentarios
-    document.getElementById('comment-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const comment = document.getElementById('comment').value;
-        const date = new Date().toLocaleDateString('es-ES', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
-        // Crear un nuevo comentario
-        const commentElement = document.createElement('div');
-        commentElement.className = 'p-4 border-l-4 border-blue-500 bg-gray-100 dark:bg-gray-700 rounded';
-        commentElement.innerHTML = `
-                <p class="font-bold">${name}</p>
-                <p class="text-gray-700 dark:text-gray-300">${comment}</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Publicado el ${date}</p>
-            `;
-
-        // Añadir el comentario al principio de la lista
-        const commentsList = document.getElementById('comments-list');
-        commentsList.insertBefore(commentElement, commentsList.firstChild);
-
-        // Limpiar el formulario
-        document.getElementById('name').value = '';
-        document.getElementById('comment').value = '';
-
-        // Aquí es donde normalmente enviarías el comentario a un servidor
-        // Para la versión simple, simplemente se muestra en la página
-        // pero no se guarda permanentemente
-
-        saveCommentToLocalStorage(name, comment, date);
-    });
-
-    // Guardar comentarios en localStorage (solución temporal)
-    function saveCommentToLocalStorage(name, comment, date) {
-        let comments = JSON.parse(localStorage.getItem('soundtribe-comments') || '[]');
-        comments.unshift({ name, comment, date });
-        localStorage.setItem('soundtribe-comments', JSON.stringify(comments));
-    }
-
-    // Cargar comentarios desde localStorage
-    function loadCommentsFromLocalStorage() {
-        const comments = JSON.parse(localStorage.getItem('soundtribe-comments') || '[]');
-        const commentsList = document.getElementById('comments-list');
-
-        // Limpiar comentarios de ejemplo
-        commentsList.innerHTML = '';
-
-        comments.forEach(comment => {
-            const commentElement = document.createElement('div');
-            commentElement.className = 'p-4 border-l-4 border-blue-500 bg-gray-100 dark:bg-gray-700 rounded';
-            commentElement.innerHTML = `
-                    <p class="font-bold">${comment.name}</p>
-                    <p class="text-gray-700 dark:text-gray-300">${comment.comment}</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Publicado el ${comment.date}</p>
-                `;
-            commentsList.appendChild(commentElement);
-        });
-    }
 
     // Cargar comentarios al iniciar la página
     window.addEventListener('DOMContentLoaded', loadCommentsFromLocalStorage);
