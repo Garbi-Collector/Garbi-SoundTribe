@@ -67,20 +67,22 @@
         </p>
 
 
-
         <div class="mb-16">
             <h2 class="text-3xl font-bold mb-6">Documentación del Proyecto</h2>
             <div class="pdf-container bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg p-4">
                 <p class="text-center text-lg">Vista previa del PDF:</p>
-                <!-- El PDF se cargará aquí -->
-                <object data="doc/SOUNDTRIBE.pdf" type="application/pdf" width="100%" height="500px">
-                    <p>Tu navegador no puede mostrar PDFs.
-                        <a href="doc/SOUNDTRIBE.pdf" download="SOUNDTRIBE.pdf">Haz clic aquí para descargar el PDF</a>.
+                <!-- Contenedor del PDF -->
+                <object id="pdfViewer" data="doc/SOUNDTRIBE.pdf" type="application/pdf" width="100%" height="100%">
+                    <!-- Mensaje alternativo si el PDF no carga -->
+                    <p>Tu navegador no puede mostrar PDFs. 
+                        <a id="downloadLink" href="doc/SOUNDTRIBE.pdf" download="SOUNDTRIBE.pdf" target="_blank">
+                            Haz clic aquí para descargar el PDF
+                        </a>.
                     </p>
                 </object>
             </div>
-
         </div>
+        
 
 
         <div class="mb-8">
